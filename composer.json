@@ -1,0 +1,27 @@
+{
+    "name": "konradkalemba/blade-components-scoped-slots",
+    "description": "Scoped slots feature addition to Laravel's Blade templating engine",
+    "type": "library",
+    "keywords": ["laravel", "blade", "scoped-slots"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Konrad Kalemba",
+            "email": "konrad@gotowi.dev"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "KonradKalemba\\BladeComponentsScopedSlots\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KonradKalemba\\BladeComponentsScopedSlots\\BladeComponentsScopedSlotsServiceProvider"
+            ]
+        }
+    }
+}
