@@ -28,7 +28,7 @@ class BladeComponentsScopedSlotsServiceProvider extends ServiceProvider
             // Connect the arguments to form a correct function declaration
             if ($functionArguments) $functionArguments = "function {$functionArguments}";
             
-            $functionUses = explode(',', trim($functionUses, '()'));
+            $functionUses = array_filter(explode(',', trim($functionUses, '()')), 'strlen');
             
             // Add `$__env` to allow usage of other Blade directives inside the scoped slot
             array_push($functionUses, '$__env');
