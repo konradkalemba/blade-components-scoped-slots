@@ -35,11 +35,11 @@ class BladeComponentsScopedSlotsServiceProvider extends ServiceProvider
 
             $functionUses = implode(',', $functionUses);
 
-            return "<?php \$__env->slot({$name}, {$functionArguments} use ({$functionUses}) { ?>"; 
+            return "<?php \$__env->slot({$name}, {$functionArguments} use ({$functionUses}) { ob_start(); ?>"; 
         });
 
         Blade::directive('endscopedslot', function () {
-            return "<?php }); ?>";
+            return "<?php return new \Illuminate\Support\HtmlString(trim(ob_get_clean())); }); ?>";
         });
     }
 }
