@@ -25,17 +25,21 @@ class BladeComponentsScopedSlotsServiceProvider extends ServiceProvider
             // Extract values from the directive's arguments array
             [$name, $functionArguments, $functionUses] = $directiveArguments;
 
+            // Wrap function arguments in parentheses if they don't already have them
+            if ($functionArguments && !preg_match('/^\(.*\)$/', $functionArguments))
+                $functionArguments = "({$functionArguments})";
+
             // Connect the arguments to form a correct function declaration
             if ($functionArguments) $functionArguments = "function {$functionArguments}";
-            
+
             $functionUses = array_filter(explode(',', trim($functionUses, '()')), 'strlen');
-            
+
             // Add `$__env` to allow usage of other Blade directives inside the scoped slot
             array_push($functionUses, '$__env');
 
             $functionUses = implode(',', $functionUses);
 
-            return "<?php \$__env->slot({$name}, {$functionArguments} use ({$functionUses}) { ?>"; 
+            return "<?php \$__env->slot({$name}, {$functionArguments} use ({$functionUses}) { ?>";
         });
 
         Blade::directive('endscopedslot', function () {
