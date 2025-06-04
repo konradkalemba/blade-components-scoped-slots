@@ -19,8 +19,8 @@ class BladeComponentsScopedSlotsServiceProvider extends ServiceProvider
             $directiveArguments = preg_split("/,(?![^\(\(]*[\)\)])/", $expression);
             $directiveArguments = array_map('trim', $directiveArguments);
 
-            // Ensure that the directive's arguments array has 3 elements - otherwise fill with `null`
-            $directiveArguments = array_pad($directiveArguments, 3, null);
+            // Ensure that the directive's arguments array has 3 elements - otherwise fill with `''`
+            $directiveArguments = array_pad($directiveArguments, 3, '');
 
             // Extract values from the directive's arguments array
             [$name, $functionArguments, $functionUses] = $directiveArguments;
